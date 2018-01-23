@@ -1,4 +1,0 @@
-make[1]: Avertissement : le fichier « CMakeFiles/Makefile2 » a une date de modification 0,54 s dans le futur
-WARNING: Catkin package name "turtleTrack" does not follow the naming conventions. It should start with a lower case letter and only contain lower case letters, digits, and underscores.
-WARNING: Catkin package name "turtleTrack" does not follow the naming conventions. It should start with a lower case letter and only contain lower case letters, digits, and underscores.
-make[1]: AVERTISSEMENT : décalage d'horloge détecté. La construction peut être incomplète.

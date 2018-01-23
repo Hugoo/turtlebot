@@ -1,4 +1,5 @@
 build/
+logs/
 bin/
 lib/
 msg_gen/

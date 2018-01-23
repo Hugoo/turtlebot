@@ -1,8 +1,0 @@
-Symlinking /usr/users/promo2017/deferrieresd_hug/ros-ws/devel/./_setup_util.py
-Symlinking /usr/users/promo2017/deferrieresd_hug/ros-ws/devel/./env.sh
-Symlinking /usr/users/promo2017/deferrieresd_hug/ros-ws/devel/./setup.bash
-Symlinking /usr/users/promo2017/deferrieresd_hug/ros-ws/devel/./setup.sh
-Symlinking /usr/users/promo2017/deferrieresd_hug/ros-ws/devel/./setup.zsh
-Symlinking /usr/users/promo2017/deferrieresd_hug/ros-ws/devel/lib/pkgconfig/catkin_tools_prebuild.pc
-Symlinking /usr/users/promo2017/deferrieresd_hug/ros-ws/devel/share/catkin_tools_prebuild/cmake/catkin_tools_prebuildConfig.cmake
-Symlinking /usr/users/promo2017/deferrieresd_hug/ros-ws/devel/share/catkin_tools_prebuild/cmake/catkin_tools_prebuildConfig-version.cmake
