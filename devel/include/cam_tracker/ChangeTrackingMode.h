@@ -1,0 +1,1 @@
+/usr/users/promo2017/deferrieresd_hug/turtlebot/devel/.private/cam_tracker/include/cam_tracker/ChangeTrackingMode.h
