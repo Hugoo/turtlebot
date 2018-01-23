@@ -1,0 +1,1 @@
+/usr/users/promo2017/deferrieresd_hug/ros-ws/devel/.private/axis_camera/share/gennodejs/ros/axis_camera/_index.js

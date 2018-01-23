@@ -1,0 +1,1 @@
+/usr/users/promo2017/deferrieresd_hug/ros-ws/devel/.private/cam_tracker/share/cam_tracker/cmake/cam_trackerConfig.cmake

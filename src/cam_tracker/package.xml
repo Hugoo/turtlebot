@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<package>
+  <name>cam_tracker</name>
+  <version>0.0.0</version>
+  <description>Our own Tracker package</description>
+  <maintainer email="lateambetedeprojet@centrecsupelale.fr">HdFdS, HM, MAV</maintainer>
+
+  <license>GPLv3</license>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+
+  <run_depend>rospy</run_depend>
+  <run_depend>sensor_msgs</run_depend>
+  <run_depend>std_msgs</run_depend>
+  <run_depend>math</run_depend>
+  <run_depend>sys</run_depend>
+  <run_depend>time</run_depend> 
+  <run_depend>cv2</run_depend>    
+  <run_depend>numpy</run_depend>   
+  
+  <build_depend>message_generation</build_depend>
+
+  <export>
+  </export>
+</package>
