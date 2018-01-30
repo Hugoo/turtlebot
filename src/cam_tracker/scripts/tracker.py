@@ -44,12 +44,12 @@ class Tracker:
 		self.current_state = axis_data
 
 	def change_mode(self,mode_data):
-		print(mode_data)
-		# if mode_data in ['TRACK', 'SEARCH', 'SCAN']:
-			# self.mode = mode_data #TRACK, SEARCH, SCAN
-		# else:
-			# self.mode = 'TRACK'
-		return Empty
+		print(mode_data.command)
+		if mode_data.command in ['TRACK', 'SEARCH', 'SCAN']:
+			self.mode = mode_data.command
+		else:
+			self.mode = 'TRACK'
+		return None
 
 	def convertPanTilt(self, pan, tilt, zoom, u, v , u0, v0):
 		theta = 4.189301e+001-6.436043e-003*zoom+2.404497e-007*zoom*zoom
