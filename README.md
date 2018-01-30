@@ -1,7 +1,15 @@
 # turtlebot
 
+(Sujet)[http://sirien.metz.supelec.fr/depot/SIR/TurtleTrack/index-resp.html]
 
-## Service mode :
+http://wiki.ros.org/ROS/Tutorials/CreatingMsgAndSrv
+
+## Messages
+
+Pour vérifier si OK
+`rosmsg show cam_tracker/ArenaPosition`
+
+## Service :
 
 `rosservice call /camera_mod "command: 'AAA'"`
 

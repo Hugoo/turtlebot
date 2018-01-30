@@ -17,12 +17,18 @@ add_service_files(
   ChangeTrackingMode.srv
 )
 
+add_message_files(
+  FILES
+  PanTilt.msg
+  ArenaPosition.msg
+)
+
+install(PROGRAMS scripts/detectNEW.py
+  DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION})
+
 generate_messages(
   DEPENDENCIES
   std_msgs
 )
 
-catkin_package()
-
-install(PROGRAMS scripts/detectNEW.py
-  DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION})
+catkin_package(CATKIN_DEPENDS message_runtime)

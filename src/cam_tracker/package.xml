@@ -18,8 +18,11 @@
   <run_depend>time</run_depend> 
   <run_depend>cv2</run_depend>    
   <run_depend>numpy</run_depend>   
+  <run_depend>message_runtime</run_depend>
   
   <build_depend>message_generation</build_depend>
+
+  
 
   <export>
   </export>
