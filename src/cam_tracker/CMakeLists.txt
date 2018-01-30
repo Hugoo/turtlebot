@@ -20,7 +20,9 @@ add_service_files(
 add_message_files(
   FILES
   PanTilt.msg
+  PanTilts.msg
   ArenaPosition.msg
+  ArenaPositions.msg
 )
 
 install(PROGRAMS scripts/detectNEW.py

@@ -18,6 +18,7 @@ from sensor_msgs.msg import CompressedImage
 from axis_camera.msg import Axis
 import copy
 from cam_tracker.srv import *
+from cam_tracker.msg import *
 
 slider = False #Mettre à false pour désactiver les curseurs
 

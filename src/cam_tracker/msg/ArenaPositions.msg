@@ -1,0 +1,1 @@
+ArenaPosition[] array_arena
