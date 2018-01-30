@@ -17,6 +17,11 @@ add_service_files(
   ChangeTrackingMode.srv
 )
 
+generate_messages(
+  DEPENDENCIES
+  std_msgs
+)
+
 catkin_package()
 
 install(PROGRAMS scripts/detectNEW.py

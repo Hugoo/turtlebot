@@ -67,14 +67,23 @@ set(cam_tracker_CONFIG_INCLUDED TRUE)
 
 # set variables for source/devel/install prefixes
 if("TRUE" STREQUAL "TRUE")
+<<<<<<< HEAD
   set(cam_tracker_SOURCE_PREFIX /usr/users/promo2018/masclet_hug/turtlebot/src/cam_tracker)
   set(cam_tracker_DEVEL_PREFIX /usr/users/promo2018/masclet_hug/turtlebot/devel/.private/cam_tracker)
+=======
+  set(cam_tracker_SOURCE_PREFIX /usr/users/promo2017/deferrieresd_hug/turtlebot/src/cam_tracker)
+  set(cam_tracker_DEVEL_PREFIX /usr/users/promo2017/deferrieresd_hug/turtlebot/devel/.private/cam_tracker)
+>>>>>>> 1b39a22402a2f1c9bf61bae62c7a3e3f4c4a3b2f
   set(cam_tracker_INSTALL_PREFIX "")
   set(cam_tracker_PREFIX ${cam_tracker_DEVEL_PREFIX})
 else()
   set(cam_tracker_SOURCE_PREFIX "")
   set(cam_tracker_DEVEL_PREFIX "")
+<<<<<<< HEAD
   set(cam_tracker_INSTALL_PREFIX /usr/users/promo2018/masclet_hug/turtlebot/install)
+=======
+  set(cam_tracker_INSTALL_PREFIX /usr/users/promo2017/deferrieresd_hug/turtlebot/install)
+>>>>>>> 1b39a22402a2f1c9bf61bae62c7a3e3f4c4a3b2f
   set(cam_tracker_PREFIX ${cam_tracker_INSTALL_PREFIX})
 endif()
 
@@ -91,9 +100,9 @@ endif()
 # flag project as catkin-based to distinguish if a find_package()-ed project is a catkin project
 set(cam_tracker_FOUND_CATKIN_PROJECT TRUE)
 
-if(NOT " " STREQUAL " ")
+if(NOT "/usr/users/promo2017/deferrieresd_hug/turtlebot/devel/.private/cam_tracker/include " STREQUAL " ")
   set(cam_tracker_INCLUDE_DIRS "")
-  set(_include_dirs "")
+  set(_include_dirs "/usr/users/promo2017/deferrieresd_hug/turtlebot/devel/.private/cam_tracker/include")
   if(NOT " " STREQUAL " ")
     set(_report "Check the issue tracker '' and consider creating a ticket if the problem has not been reported yet.")
   elseif(NOT " " STREQUAL " ")
@@ -110,7 +119,11 @@ if(NOT " " STREQUAL " ")
         message(FATAL_ERROR "Project 'cam_tracker' specifies '${idir}' as an include dir, which is not found.  It does not exist in '${include}'.  ${_report}")
       endif()
     else()
+<<<<<<< HEAD
       message(FATAL_ERROR "Project 'cam_tracker' specifies '${idir}' as an include dir, which is not found.  It does neither exist as an absolute directory nor in '/usr/users/promo2018/masclet_hug/turtlebot/src/cam_tracker/${idir}'.  ${_report}")
+=======
+      message(FATAL_ERROR "Project 'cam_tracker' specifies '${idir}' as an include dir, which is not found.  It does neither exist as an absolute directory nor in '/usr/users/promo2017/deferrieresd_hug/turtlebot/src/cam_tracker/${idir}'.  ${_report}")
+>>>>>>> 1b39a22402a2f1c9bf61bae62c7a3e3f4c4a3b2f
     endif()
     _list_append_unique(cam_tracker_INCLUDE_DIRS ${include})
   endforeach()
@@ -129,7 +142,11 @@ foreach(library ${libraries})
     set(lib_path "")
     set(lib "${library}-NOTFOUND")
     # since the path where the library is found is returned we have to iterate over the paths manually
+<<<<<<< HEAD
     foreach(path /usr/users/promo2018/masclet_hug/turtlebot/devel/.private/cam_tracker/lib;/usr/users/promo2018/masclet_hug/turtlebot/devel/lib;/usr/users/promo2018/masclet_hug/ros-ws/devel/lib;/opt/ros/kinetic/lib)
+=======
+    foreach(path /usr/users/promo2017/deferrieresd_hug/turtlebot/devel/.private/cam_tracker/lib;/usr/users/promo2017/deferrieresd_hug/turtlebot/devel/lib;/usr/users/promo2017/deferrieresd_hug/ros-ws/devel/lib;/opt/ros/kinetic/lib)
+>>>>>>> 1b39a22402a2f1c9bf61bae62c7a3e3f4c4a3b2f
       find_library(lib ${library}
         PATHS ${path}
         NO_DEFAULT_PATH NO_CMAKE_FIND_ROOT_PATH)
@@ -152,7 +169,7 @@ foreach(library ${libraries})
   endif()
 endforeach()
 
-set(cam_tracker_EXPORTED_TARGETS "")
+set(cam_tracker_EXPORTED_TARGETS "cam_tracker_generate_messages_cpp;cam_tracker_generate_messages_eus;cam_tracker_generate_messages_lisp;cam_tracker_generate_messages_nodejs;cam_tracker_generate_messages_py")
 # create dummy targets for exported code generation targets to make life of users easier
 foreach(t ${cam_tracker_EXPORTED_TARGETS})
   if(NOT TARGET ${t})
@@ -189,7 +206,7 @@ foreach(depend ${depends})
   list(APPEND cam_tracker_EXPORTED_TARGETS ${${cam_tracker_dep}_EXPORTED_TARGETS})
 endforeach()
 
-set(pkg_cfg_extras "")
+set(pkg_cfg_extras "cam_tracker-msg-extras.cmake")
 foreach(extra ${pkg_cfg_extras})
   if(NOT IS_ABSOLUTE ${extra})
     set(extra ${cam_tracker_DIR}/${extra})

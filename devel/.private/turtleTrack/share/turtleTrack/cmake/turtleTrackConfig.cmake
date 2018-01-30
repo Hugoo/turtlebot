@@ -67,14 +67,23 @@ set(turtleTrack_CONFIG_INCLUDED TRUE)
 
 # set variables for source/devel/install prefixes
 if("TRUE" STREQUAL "TRUE")
+<<<<<<< HEAD
   set(turtleTrack_SOURCE_PREFIX /usr/users/promo2018/masclet_hug/turtlebot/src/turtleTrack)
   set(turtleTrack_DEVEL_PREFIX /usr/users/promo2018/masclet_hug/turtlebot/devel/.private/turtleTrack)
+=======
+  set(turtleTrack_SOURCE_PREFIX /usr/users/promo2017/deferrieresd_hug/turtlebot/src/turtleTrack)
+  set(turtleTrack_DEVEL_PREFIX /usr/users/promo2017/deferrieresd_hug/turtlebot/devel/.private/turtleTrack)
+>>>>>>> 1b39a22402a2f1c9bf61bae62c7a3e3f4c4a3b2f
   set(turtleTrack_INSTALL_PREFIX "")
   set(turtleTrack_PREFIX ${turtleTrack_DEVEL_PREFIX})
 else()
   set(turtleTrack_SOURCE_PREFIX "")
   set(turtleTrack_DEVEL_PREFIX "")
+<<<<<<< HEAD
   set(turtleTrack_INSTALL_PREFIX /usr/users/promo2018/masclet_hug/turtlebot/install)
+=======
+  set(turtleTrack_INSTALL_PREFIX /usr/users/promo2017/deferrieresd_hug/turtlebot/install)
+>>>>>>> 1b39a22402a2f1c9bf61bae62c7a3e3f4c4a3b2f
   set(turtleTrack_PREFIX ${turtleTrack_INSTALL_PREFIX})
 endif()
 
@@ -110,7 +119,11 @@ if(NOT " " STREQUAL " ")
         message(FATAL_ERROR "Project 'turtleTrack' specifies '${idir}' as an include dir, which is not found.  It does not exist in '${include}'.  ${_report}")
       endif()
     else()
+<<<<<<< HEAD
       message(FATAL_ERROR "Project 'turtleTrack' specifies '${idir}' as an include dir, which is not found.  It does neither exist as an absolute directory nor in '/usr/users/promo2018/masclet_hug/turtlebot/src/turtleTrack/${idir}'.  ${_report}")
+=======
+      message(FATAL_ERROR "Project 'turtleTrack' specifies '${idir}' as an include dir, which is not found.  It does neither exist as an absolute directory nor in '/usr/users/promo2017/deferrieresd_hug/turtlebot/src/turtleTrack/${idir}'.  ${_report}")
+>>>>>>> 1b39a22402a2f1c9bf61bae62c7a3e3f4c4a3b2f
     endif()
     _list_append_unique(turtleTrack_INCLUDE_DIRS ${include})
   endforeach()
@@ -129,7 +142,11 @@ foreach(library ${libraries})
     set(lib_path "")
     set(lib "${library}-NOTFOUND")
     # since the path where the library is found is returned we have to iterate over the paths manually
+<<<<<<< HEAD
     foreach(path /usr/users/promo2018/masclet_hug/turtlebot/devel/.private/turtleTrack/lib;/usr/users/promo2018/masclet_hug/turtlebot/devel/lib;/usr/users/promo2018/masclet_hug/ros-ws/devel/lib;/opt/ros/kinetic/lib)
+=======
+    foreach(path /usr/users/promo2017/deferrieresd_hug/turtlebot/devel/.private/turtleTrack/lib;/usr/users/promo2017/deferrieresd_hug/turtlebot/devel/lib;/usr/users/promo2017/deferrieresd_hug/ros-ws/devel/lib;/opt/ros/kinetic/lib)
+>>>>>>> 1b39a22402a2f1c9bf61bae62c7a3e3f4c4a3b2f
       find_library(lib ${library}
         PATHS ${path}
         NO_DEFAULT_PATH NO_CMAKE_FIND_ROOT_PATH)

@@ -1,2 +1,6 @@
 - setup-file:
+<<<<<<< HEAD
     local-name: /usr/users/promo2018/masclet_hug/turtlebot/devel/.private/cam_tracker/setup.sh
+=======
+    local-name: /usr/users/promo2017/deferrieresd_hug/turtlebot/devel/.private/cam_tracker/setup.sh
+>>>>>>> 1b39a22402a2f1c9bf61bae62c7a3e3f4c4a3b2f

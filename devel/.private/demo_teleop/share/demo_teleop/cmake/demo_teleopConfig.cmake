@@ -67,14 +67,23 @@ set(demo_teleop_CONFIG_INCLUDED TRUE)
 
 # set variables for source/devel/install prefixes
 if("TRUE" STREQUAL "TRUE")
+<<<<<<< HEAD
   set(demo_teleop_SOURCE_PREFIX /usr/users/promo2018/masclet_hug/turtlebot/src/demo-teleop)
   set(demo_teleop_DEVEL_PREFIX /usr/users/promo2018/masclet_hug/turtlebot/devel/.private/demo_teleop)
+=======
+  set(demo_teleop_SOURCE_PREFIX /usr/users/promo2017/deferrieresd_hug/turtlebot/src/demo-teleop)
+  set(demo_teleop_DEVEL_PREFIX /usr/users/promo2017/deferrieresd_hug/turtlebot/devel/.private/demo_teleop)
+>>>>>>> 1b39a22402a2f1c9bf61bae62c7a3e3f4c4a3b2f
   set(demo_teleop_INSTALL_PREFIX "")
   set(demo_teleop_PREFIX ${demo_teleop_DEVEL_PREFIX})
 else()
   set(demo_teleop_SOURCE_PREFIX "")
   set(demo_teleop_DEVEL_PREFIX "")
+<<<<<<< HEAD
   set(demo_teleop_INSTALL_PREFIX /usr/users/promo2018/masclet_hug/turtlebot/install)
+=======
+  set(demo_teleop_INSTALL_PREFIX /usr/users/promo2017/deferrieresd_hug/turtlebot/install)
+>>>>>>> 1b39a22402a2f1c9bf61bae62c7a3e3f4c4a3b2f
   set(demo_teleop_PREFIX ${demo_teleop_INSTALL_PREFIX})
 endif()
 
@@ -91,9 +100,15 @@ endif()
 # flag project as catkin-based to distinguish if a find_package()-ed project is a catkin project
 set(demo_teleop_FOUND_CATKIN_PROJECT TRUE)
 
+<<<<<<< HEAD
 if(NOT "/usr/users/promo2018/masclet_hug/turtlebot/devel/.private/demo_teleop/include " STREQUAL " ")
   set(demo_teleop_INCLUDE_DIRS "")
   set(_include_dirs "/usr/users/promo2018/masclet_hug/turtlebot/devel/.private/demo_teleop/include")
+=======
+if(NOT "/usr/users/promo2017/deferrieresd_hug/turtlebot/devel/.private/demo_teleop/include " STREQUAL " ")
+  set(demo_teleop_INCLUDE_DIRS "")
+  set(_include_dirs "/usr/users/promo2017/deferrieresd_hug/turtlebot/devel/.private/demo_teleop/include")
+>>>>>>> 1b39a22402a2f1c9bf61bae62c7a3e3f4c4a3b2f
   if(NOT " " STREQUAL " ")
     set(_report "Check the issue tracker '' and consider creating a ticket if the problem has not been reported yet.")
   elseif(NOT " " STREQUAL " ")
@@ -110,7 +125,11 @@ if(NOT "/usr/users/promo2018/masclet_hug/turtlebot/devel/.private/demo_teleop/in
         message(FATAL_ERROR "Project 'demo_teleop' specifies '${idir}' as an include dir, which is not found.  It does not exist in '${include}'.  ${_report}")
       endif()
     else()
+<<<<<<< HEAD
       message(FATAL_ERROR "Project 'demo_teleop' specifies '${idir}' as an include dir, which is not found.  It does neither exist as an absolute directory nor in '/usr/users/promo2018/masclet_hug/turtlebot/src/demo-teleop/${idir}'.  ${_report}")
+=======
+      message(FATAL_ERROR "Project 'demo_teleop' specifies '${idir}' as an include dir, which is not found.  It does neither exist as an absolute directory nor in '/usr/users/promo2017/deferrieresd_hug/turtlebot/src/demo-teleop/${idir}'.  ${_report}")
+>>>>>>> 1b39a22402a2f1c9bf61bae62c7a3e3f4c4a3b2f
     endif()
     _list_append_unique(demo_teleop_INCLUDE_DIRS ${include})
   endforeach()
@@ -129,7 +148,11 @@ foreach(library ${libraries})
     set(lib_path "")
     set(lib "${library}-NOTFOUND")
     # since the path where the library is found is returned we have to iterate over the paths manually
+<<<<<<< HEAD
     foreach(path /usr/users/promo2018/masclet_hug/turtlebot/devel/.private/demo_teleop/lib;/usr/users/promo2018/masclet_hug/turtlebot/devel/lib;/usr/users/promo2018/masclet_hug/ros-ws/devel/lib;/opt/ros/kinetic/lib)
+=======
+    foreach(path /usr/users/promo2017/deferrieresd_hug/turtlebot/devel/.private/demo_teleop/lib;/usr/users/promo2017/deferrieresd_hug/turtlebot/devel/lib;/usr/users/promo2017/deferrieresd_hug/ros-ws/devel/lib;/opt/ros/kinetic/lib)
+>>>>>>> 1b39a22402a2f1c9bf61bae62c7a3e3f4c4a3b2f
       find_library(lib ${library}
         PATHS ${path}
         NO_DEFAULT_PATH NO_CMAKE_FIND_ROOT_PATH)

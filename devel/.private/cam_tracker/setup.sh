@@ -10,7 +10,11 @@
 
 # since this file is sourced either use the provided _CATKIN_SETUP_DIR
 # or fall back to the destination set at configure time
+<<<<<<< HEAD
 : ${_CATKIN_SETUP_DIR:=/usr/users/promo2018/masclet_hug/turtlebot/devel/.private/cam_tracker}
+=======
+: ${_CATKIN_SETUP_DIR:=/usr/users/promo2017/deferrieresd_hug/turtlebot/devel/.private/cam_tracker}
+>>>>>>> 1b39a22402a2f1c9bf61bae62c7a3e3f4c4a3b2f
 _SETUP_UTIL="$_CATKIN_SETUP_DIR/_setup_util.py"
 unset _CATKIN_SETUP_DIR
 

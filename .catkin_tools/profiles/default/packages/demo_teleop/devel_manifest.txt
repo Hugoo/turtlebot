@@ -1,4 +1,5 @@
 demo-teleop
+<<<<<<< HEAD
 /usr/users/promo2018/masclet_hug/turtlebot/devel/.private/demo_teleop/lib/python2.7/dist-packages/demo_teleop/__init__.py /usr/users/promo2018/masclet_hug/turtlebot/devel/lib/python2.7/dist-packages/demo_teleop/__init__.py
 /usr/users/promo2018/masclet_hug/turtlebot/devel/.private/demo_teleop/lib/python2.7/dist-packages/demo_teleop/cfg/__init__.py /usr/users/promo2018/masclet_hug/turtlebot/devel/lib/python2.7/dist-packages/demo_teleop/cfg/__init__.py
 /usr/users/promo2018/masclet_hug/turtlebot/devel/.private/demo_teleop/lib/python2.7/dist-packages/demo_teleop/cfg/SafeDroneTeleopConfig.py /usr/users/promo2018/masclet_hug/turtlebot/devel/lib/python2.7/dist-packages/demo_teleop/cfg/SafeDroneTeleopConfig.py
@@ -9,3 +10,15 @@ demo-teleop
 /usr/users/promo2018/masclet_hug/turtlebot/devel/.private/demo_teleop/share/demo_teleop/docs/SafeDroneTeleopConfig.dox /usr/users/promo2018/masclet_hug/turtlebot/devel/share/demo_teleop/docs/SafeDroneTeleopConfig.dox
 /usr/users/promo2018/masclet_hug/turtlebot/devel/.private/demo_teleop/share/demo_teleop/docs/SafeDroneTeleopConfig.wikidoc /usr/users/promo2018/masclet_hug/turtlebot/devel/share/demo_teleop/docs/SafeDroneTeleopConfig.wikidoc
 /usr/users/promo2018/masclet_hug/turtlebot/devel/.private/demo_teleop/share/demo_teleop/docs/SafeDroneTeleopConfig-usage.dox /usr/users/promo2018/masclet_hug/turtlebot/devel/share/demo_teleop/docs/SafeDroneTeleopConfig-usage.dox
+=======
+/usr/users/promo2017/deferrieresd_hug/turtlebot/devel/.private/demo_teleop/lib/python2.7/dist-packages/demo_teleop/__init__.py /usr/users/promo2017/deferrieresd_hug/turtlebot/devel/lib/python2.7/dist-packages/demo_teleop/__init__.py
+/usr/users/promo2017/deferrieresd_hug/turtlebot/devel/.private/demo_teleop/lib/python2.7/dist-packages/demo_teleop/cfg/__init__.py /usr/users/promo2017/deferrieresd_hug/turtlebot/devel/lib/python2.7/dist-packages/demo_teleop/cfg/__init__.py
+/usr/users/promo2017/deferrieresd_hug/turtlebot/devel/.private/demo_teleop/lib/python2.7/dist-packages/demo_teleop/cfg/SafeDroneTeleopConfig.py /usr/users/promo2017/deferrieresd_hug/turtlebot/devel/lib/python2.7/dist-packages/demo_teleop/cfg/SafeDroneTeleopConfig.py
+/usr/users/promo2017/deferrieresd_hug/turtlebot/devel/.private/demo_teleop/lib/pkgconfig/demo_teleop.pc /usr/users/promo2017/deferrieresd_hug/turtlebot/devel/lib/pkgconfig/demo_teleop.pc
+/usr/users/promo2017/deferrieresd_hug/turtlebot/devel/.private/demo_teleop/include/demo_teleop/SafeDroneTeleopConfig.h /usr/users/promo2017/deferrieresd_hug/turtlebot/devel/include/demo_teleop/SafeDroneTeleopConfig.h
+/usr/users/promo2017/deferrieresd_hug/turtlebot/devel/.private/demo_teleop/share/demo_teleop/cmake/demo_teleopConfig-version.cmake /usr/users/promo2017/deferrieresd_hug/turtlebot/devel/share/demo_teleop/cmake/demo_teleopConfig-version.cmake
+/usr/users/promo2017/deferrieresd_hug/turtlebot/devel/.private/demo_teleop/share/demo_teleop/cmake/demo_teleopConfig.cmake /usr/users/promo2017/deferrieresd_hug/turtlebot/devel/share/demo_teleop/cmake/demo_teleopConfig.cmake
+/usr/users/promo2017/deferrieresd_hug/turtlebot/devel/.private/demo_teleop/share/demo_teleop/docs/SafeDroneTeleopConfig.dox /usr/users/promo2017/deferrieresd_hug/turtlebot/devel/share/demo_teleop/docs/SafeDroneTeleopConfig.dox
+/usr/users/promo2017/deferrieresd_hug/turtlebot/devel/.private/demo_teleop/share/demo_teleop/docs/SafeDroneTeleopConfig.wikidoc /usr/users/promo2017/deferrieresd_hug/turtlebot/devel/share/demo_teleop/docs/SafeDroneTeleopConfig.wikidoc
+/usr/users/promo2017/deferrieresd_hug/turtlebot/devel/.private/demo_teleop/share/demo_teleop/docs/SafeDroneTeleopConfig-usage.dox /usr/users/promo2017/deferrieresd_hug/turtlebot/devel/share/demo_teleop/docs/SafeDroneTeleopConfig-usage.dox
+>>>>>>> 1b39a22402a2f1c9bf61bae62c7a3e3f4c4a3b2f

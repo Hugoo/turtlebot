@@ -67,14 +67,23 @@ set(axis_camera_CONFIG_INCLUDED TRUE)
 
 # set variables for source/devel/install prefixes
 if("TRUE" STREQUAL "TRUE")
+<<<<<<< HEAD
   set(axis_camera_SOURCE_PREFIX /usr/users/promo2018/masclet_hug/turtlebot/src/axis_camera)
   set(axis_camera_DEVEL_PREFIX /usr/users/promo2018/masclet_hug/turtlebot/devel/.private/axis_camera)
+=======
+  set(axis_camera_SOURCE_PREFIX /usr/users/promo2017/deferrieresd_hug/turtlebot/src/axis_camera)
+  set(axis_camera_DEVEL_PREFIX /usr/users/promo2017/deferrieresd_hug/turtlebot/devel/.private/axis_camera)
+>>>>>>> 1b39a22402a2f1c9bf61bae62c7a3e3f4c4a3b2f
   set(axis_camera_INSTALL_PREFIX "")
   set(axis_camera_PREFIX ${axis_camera_DEVEL_PREFIX})
 else()
   set(axis_camera_SOURCE_PREFIX "")
   set(axis_camera_DEVEL_PREFIX "")
+<<<<<<< HEAD
   set(axis_camera_INSTALL_PREFIX /usr/users/promo2018/masclet_hug/turtlebot/install)
+=======
+  set(axis_camera_INSTALL_PREFIX /usr/users/promo2017/deferrieresd_hug/turtlebot/install)
+>>>>>>> 1b39a22402a2f1c9bf61bae62c7a3e3f4c4a3b2f
   set(axis_camera_PREFIX ${axis_camera_INSTALL_PREFIX})
 endif()
 
@@ -91,9 +100,15 @@ endif()
 # flag project as catkin-based to distinguish if a find_package()-ed project is a catkin project
 set(axis_camera_FOUND_CATKIN_PROJECT TRUE)
 
+<<<<<<< HEAD
 if(NOT "/usr/users/promo2018/masclet_hug/turtlebot/devel/.private/axis_camera/include " STREQUAL " ")
   set(axis_camera_INCLUDE_DIRS "")
   set(_include_dirs "/usr/users/promo2018/masclet_hug/turtlebot/devel/.private/axis_camera/include")
+=======
+if(NOT "/usr/users/promo2017/deferrieresd_hug/turtlebot/devel/.private/axis_camera/include " STREQUAL " ")
+  set(axis_camera_INCLUDE_DIRS "")
+  set(_include_dirs "/usr/users/promo2017/deferrieresd_hug/turtlebot/devel/.private/axis_camera/include")
+>>>>>>> 1b39a22402a2f1c9bf61bae62c7a3e3f4c4a3b2f
   if(NOT "https://github.com/ros-drivers/axis_camera/issues " STREQUAL " ")
     set(_report "Check the issue tracker 'https://github.com/ros-drivers/axis_camera/issues' and consider creating a ticket if the problem has not been reported yet.")
   elseif(NOT "http://ros.org/wiki/axis_camera " STREQUAL " ")
@@ -110,7 +125,11 @@ if(NOT "/usr/users/promo2018/masclet_hug/turtlebot/devel/.private/axis_camera/in
         message(FATAL_ERROR "Project 'axis_camera' specifies '${idir}' as an include dir, which is not found.  It does not exist in '${include}'.  ${_report}")
       endif()
     else()
+<<<<<<< HEAD
       message(FATAL_ERROR "Project 'axis_camera' specifies '${idir}' as an include dir, which is not found.  It does neither exist as an absolute directory nor in '/usr/users/promo2018/masclet_hug/turtlebot/src/axis_camera/${idir}'.  ${_report}")
+=======
+      message(FATAL_ERROR "Project 'axis_camera' specifies '${idir}' as an include dir, which is not found.  It does neither exist as an absolute directory nor in '/usr/users/promo2017/deferrieresd_hug/turtlebot/src/axis_camera/${idir}'.  ${_report}")
+>>>>>>> 1b39a22402a2f1c9bf61bae62c7a3e3f4c4a3b2f
     endif()
     _list_append_unique(axis_camera_INCLUDE_DIRS ${include})
   endforeach()
@@ -129,7 +148,11 @@ foreach(library ${libraries})
     set(lib_path "")
     set(lib "${library}-NOTFOUND")
     # since the path where the library is found is returned we have to iterate over the paths manually
+<<<<<<< HEAD
     foreach(path /usr/users/promo2018/masclet_hug/turtlebot/devel/.private/axis_camera/lib;/usr/users/promo2018/masclet_hug/turtlebot/devel/lib;/usr/users/promo2018/masclet_hug/ros-ws/devel/lib;/opt/ros/kinetic/lib)
+=======
+    foreach(path /usr/users/promo2017/deferrieresd_hug/turtlebot/devel/.private/axis_camera/lib;/usr/users/promo2017/deferrieresd_hug/turtlebot/devel/lib;/usr/users/promo2017/deferrieresd_hug/ros-ws/devel/lib;/opt/ros/kinetic/lib)
+>>>>>>> 1b39a22402a2f1c9bf61bae62c7a3e3f4c4a3b2f
       find_library(lib ${library}
         PATHS ${path}
         NO_DEFAULT_PATH NO_CMAKE_FIND_ROOT_PATH)
