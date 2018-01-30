@@ -1,1 +1,0 @@
-/usr/users/promo2018/masclet_hug/turtlebot/devel/.private/axis_camera/share/gennodejs/ros/axis_camera/msg/_index.js

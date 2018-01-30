@@ -1,1 +1,0 @@
-/usr/users/promo2018/masclet_hug/turtlebot/devel/.private/axis_camera/share/common-lisp/ros/axis_camera/msg/_package_Axis.lisp

@@ -1,1 +1,0 @@
-/usr/users/promo2018/masclet_hug/turtlebot/devel/.private/catkin_tools_prebuild/env.sh

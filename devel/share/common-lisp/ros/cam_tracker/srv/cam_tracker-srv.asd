@@ -1,1 +1,0 @@
-/usr/users/promo2018/masclet_hug/turtlebot/devel/.private/cam_tracker/share/common-lisp/ros/cam_tracker/srv/cam_tracker-srv.asd
