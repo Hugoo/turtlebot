@@ -1,8 +1,0 @@
-Symlinking /usr/users/promo2018/masclet_hug/turtlebot/devel/./_setup_util.py
-Symlinking /usr/users/promo2018/masclet_hug/turtlebot/devel/./env.sh
-Symlinking /usr/users/promo2018/masclet_hug/turtlebot/devel/./setup.bash
-Symlinking /usr/users/promo2018/masclet_hug/turtlebot/devel/./setup.sh
-Symlinking /usr/users/promo2018/masclet_hug/turtlebot/devel/./setup.zsh
-Symlinking /usr/users/promo2018/masclet_hug/turtlebot/devel/lib/pkgconfig/catkin_tools_prebuild.pc
-Symlinking /usr/users/promo2018/masclet_hug/turtlebot/devel/share/catkin_tools_prebuild/cmake/catkin_tools_prebuildConfig.cmake
-Symlinking /usr/users/promo2018/masclet_hug/turtlebot/devel/share/catkin_tools_prebuild/cmake/catkin_tools_prebuildConfig-version.cmake
