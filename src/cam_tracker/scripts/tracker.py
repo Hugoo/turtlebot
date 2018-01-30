@@ -30,10 +30,18 @@ class Tracker:
 		self.mode = 'TRACK'
 		self.sens_pan = 1
 
+		
+		#PUB
+		self.pub_pantilts = rospy.Publisher('/pan_tilts', PanTilts)
 		self.pub = rospy.Publisher('/imgg/compressed', CompressedImage, queue_size=10)
-		self.sub = rospy.Subscriber('axis/image_raw/compressed', CompressedImage, self.callback)
-		self.sub_cam = rospy.Subscriber('/axis/state', Axis, self.update_state)
 		self.pub_cam = rospy.Publisher('axis/cmd', Axis)
+		
+
+		#SUB
+		self.sub_cam = rospy.Subscriber('/axis/state', Axis, self.update_state)
+		self.sub = rospy.Subscriber('axis/image_raw/compressed', CompressedImage, self.callback)
+		
+
 		#http://wiki.ros.org/ROS/Tutorials/WritingServiceClient%28python%29#rospy_tutorials.2BAC8-Tutorials.2BAC8-WritingServiceClient.CA-27047f5058d93f3c972525600be4e0b4132b06a5_13
 		self.ser_mode = rospy.Service('/camera_mod', ChangeTrackingMode, self.change_mode)
 		
@@ -46,7 +54,7 @@ class Tracker:
 
 	def change_mode(self,mode_data):
 		print(mode_data.command)
-		if mode_data.command in ['TRACK', 'SEARCH', 'SCAN']:
+		if mode_data.command in ['TRACK', 'SEARCH', 'SCAN', 'STOP']:
 			self.mode = mode_data.command
 		else:
 			self.mode = 'TRACK'
@@ -76,7 +84,10 @@ class Tracker:
 
   		span = -(180.0*beta/math.pi)
   		tilt = -(180.0*alpha/math.pi)
-  		return [span, tilt] #span, tilt
+  		pan_tilt = PanTilt()
+  		pan_tilt.pan = span
+  		pan_tilt.tilt = tilt
+  		return pan_tilt #[span, tilt] #span, tilt
 
 
 
@@ -117,7 +128,8 @@ class Tracker:
 
 	def computeImage(self, img):
 		#img is a numpy array
-		#get une image de la camera, retourne l'image avec un point + coordonées x,y
+		#get une image de la camera, retourne l'image avec les cercles autour des bots
+		#retourne aussi une liste de coordonées x,y
 
 
 		"""
@@ -161,38 +173,41 @@ class Tracker:
 
 		_, cnts, hierarchy = cv2.findContours(mask, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
 		#print(cnt[0])
-		cnt = self.get_biggest_contour(cnts)
-
-		cX = -1
-		cY = -1
-		try:
-			M = cv2.moments(cnt)
-			cX = int(M["m10"] / M["m00"])
-			cY = int(M["m01"] / M["m00"])
-			cv2.circle(img, (cX, cY), 7, (255, 255, 255), -1)
-		except:
-			pass
+		cnts = self.get_biggest_contour(cnts)
+		centers = []
+		for cnt in cnts:
+			try:
+				M = cv2.moments(cnt)
+				cX = int(M["m10"] / M["m00"])
+				cY = int(M["m01"] / M["m00"])
+				cv2.circle(img, (cX, cY), 7, (255, 255, 255), -1)
+				centers.append([cX,cY])
+			except:
+				pass
 		#cv2.drawContours(img, cnt, -1, (255,255,0),2)
 
 		#print("contours",what)
-		if cnt != None:
-			if len(cnt)>=5:
-				ellipse = cv2.fitEllipse(cnt)
-				cv2.ellipse(img,ellipse,(0,255,0),2)
-
-		return img, cX, cY
+			if cnt != None:
+				if len(cnt)>=5:
+					ellipse = cv2.fitEllipse(cnt)
+					cv2.ellipse(img,ellipse,(0,255,0),2)
+		print(centers)
+		return img, centers
 
 	def get_biggest_contour(self, cnts):
+
 		#cnts is a list of contours
 		#returns a contour
-		best_cnt = None
-		max_area = -1
-		for cnt in cnts:
-			area = cv2.contourArea(cnt)
-			if area > max_area:
-				best_cnt = cnt
+		#best_cnt = None
+		#max_area = -1
+		#for cnt in cnts:
+		#	area = cv2.contourArea(cnt)
+		#	if area > max_area:
+		#		best_cnt = cnt
+		#print(cv2.contourArea(best_cnt))
 
-		return best_cnt
+		good_cnts = [cnt for cnt in cnts if cv2.contourArea(cnt)>160]
+		return good_cnts
 
 	def callback(self, data_img):
 		np_arr = np.fromstring(data_img.data, np.uint8)
@@ -211,7 +226,23 @@ class Tracker:
 			cv2.imshow('image',frame)
 			self.scanMode()
 		else:
-			img, u, v = self.computeImage(frame) #u = x et v = y
+			#img, u, v = self.computeImage(frame) #u = x et v = y
+			img, centers = self.computeImage(frame) #centers = array de [x,y]
+			center_x = img.shape[1]/2
+			center_y = img.shape[0]/2
+
+			#Draw a crosshair in the center of the image
+			cv2.line(img, (center_x-20, center_y), (center_x+20, center_y), (0, 0, 255), 2)
+			cv2.line(img, (center_x, center_y-20), (center_x, center_y+20), (0, 0, 255), 2)
+
+			pan_tilts = PanTilts()
+			for center in centers:
+				pan_tilt = self.convertPanTilt(self.current_state.pan, self.current_state.tilt,self.current_state.zoom, center[0], center[1], center_x, center_y)
+				pan_tilts.array_pantilt.append(pan_tilt)
+			
+			self.pub_pantilts.publish(pan_tilts)
+			
+			"""
 			if u != -1 and v != -1 and time.time()-self.lastcall > 1.5:
 				u0 = img.shape[1]/2
 				v0 = img.shape[0]/2
@@ -246,10 +277,11 @@ class Tracker:
 
 				if abs(pan_tilt[0]) > 3 and abs(pan_tilt[1]) >3:
 					#print("post it : \n X: "+str(u)+"\n Y: "+str(v))
-					print("ordre : \n span: "+str(delta_pan)+"\n Tilt: "+str(delta_tilt))
-					self.pub_cam.publish(next_state)
+					#print("ordre : \n span: "+str(delta_pan)+"\n Tilt: "+str(delta_tilt))
+					if self.mode != 'STOP':
+						self.pub_cam.publish(next_state)
 					self.lastcall = time.time()
-
+			"""
 		
 			cv2.imshow('image',img)
 		cv2.waitKey(1) & 0xFF
