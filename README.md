@@ -1,6 +1,6 @@
 # turtlebot
 
-(Sujet)[http://sirien.metz.supelec.fr/depot/SIR/TurtleTrack/index-resp.html]
+[Sujet](http://sirien.metz.supelec.fr/depot/SIR/TurtleTrack/index-resp.html)
 
 http://wiki.ros.org/ROS/Tutorials/CreatingMsgAndSrv
 
@@ -25,4 +25,5 @@ Les différents modes sont :
 ```
 catkin clean
 catkin build
+rostopic echo /pan_tilts
 ```

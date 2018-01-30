@@ -30,6 +30,7 @@ class Tracker:
 		self.sub_cam = rospy.Subscriber('/axis/state', Axis, self.update_state)
 		self.sub = rospy.Subscriber('axis/image_raw/compressed', CompressedImage, self.callback)
 		
+		print("Detect node started")
 
 	def nothing(self,x):
 		pass
@@ -110,9 +111,9 @@ class Tracker:
 		else:
 			h_low = 153
 			s_low = 69
-			v_low = 164
+			v_low = 59
 
-			h_h = 172
+			h_h = 179
 			s_h = 200
 			v_h = 255
 
@@ -143,6 +144,8 @@ class Tracker:
 				if len(cnt)>=5:
 					ellipse = cv2.fitEllipse(cnt)
 					cv2.ellipse(img,ellipse,(0,255,0),2)
+		if slider:
+			img = res	
 		return img, centers
 
 	def filter_cnts(self, cnts):
@@ -182,7 +185,7 @@ class Tracker:
 		
 
 if __name__ == '__main__':
-	rospy.init_node('analyse', anonymous=True)
+	rospy.init_node('detect', anonymous=True)
 
 	try:
 		Tracker()

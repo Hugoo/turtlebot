@@ -7,13 +7,7 @@ import math
 import rospy
 import sys
 import time
-import cv2
 import numpy as np
-#from geometry_msgs.msg import Twist
-#from geometry_msgs.msg import Pose2D
-#from geometry_msgs.msg import Pose
-#from std_msgs.msg      import Float64
-#from turtlesim.msg       import Pose
 from sensor_msgs.msg import CompressedImage
 from axis_camera.msg import Axis
 import copy
@@ -32,22 +26,17 @@ class Tracker:
 
 		
 		#PUB
-		self.pub_pantilts = rospy.Publisher('/pan_tilts', PanTilts)
-		self.pub = rospy.Publisher('/imgg/compressed', CompressedImage, queue_size=10)
 		self.pub_cam = rospy.Publisher('axis/cmd', Axis)
 		
 
 		#SUB
 		self.sub_cam = rospy.Subscriber('/axis/state', Axis, self.update_state)
-		self.sub = rospy.Subscriber('axis/image_raw/compressed', CompressedImage, self.callback)
-		
+		self.sub_pantilts = rospy.Subscriber('/pan_tilts', PanTilts, self.callback)
 
 		#http://wiki.ros.org/ROS/Tutorials/WritingServiceClient%28python%29#rospy_tutorials.2BAC8-Tutorials.2BAC8-WritingServiceClient.CA-27047f5058d93f3c972525600be4e0b4132b06a5_13
 		self.ser_mode = rospy.Service('/camera_mod', ChangeTrackingMode, self.change_mode)
 		
-
-	def nothing(self,x):
-		pass
+		print("Tracker started in mode : "+self.mode)
 
 	def update_state(self,axis_data):
 		self.current_state = axis_data
@@ -58,49 +47,12 @@ class Tracker:
 			self.mode = mode_data.command
 		else:
 			self.mode = 'TRACK'
+		
 		return None
 
-	def convertPanTilt(self, pan, tilt, zoom, u, v , u0, v0):
-		theta = 4.189301e+001-6.436043e-003*zoom+2.404497e-007*zoom*zoom
 
-  		focale = u0/math.tan((math.pi*theta/180.0)/2)
-
-  		x=u-u0
-  		y=v-v0
-  		z = focale
-  		norme= math.sqrt(x*x+y*y+z*z)
-
-  		x/=norme
-  		y/=norme
-  		z/=norme
-
-  		beta0=-(math.pi*pan/180.0)
-  		alpha0=-(math.pi*tilt/180.0)
-  		X=math.cos(beta0)*x+math.sin(alpha0)*math.sin(beta0)*y-math.cos(alpha0)*math.sin(beta0)*z;
-  		Y=math.cos(alpha0)*y+math.sin(alpha0)*z;
-  		Z=math.sin(beta0)*x-math.sin(alpha0)*math.cos(beta0)*y+math.cos(alpha0)*math.cos(beta0)*z;
-  		alpha=math.atan2(Y,math.sqrt(X*X+Z*Z));
-  		beta=-math.atan2(X,Z);
-
-  		span = -(180.0*beta/math.pi)
-  		tilt = -(180.0*alpha/math.pi)
-  		pan_tilt = PanTilt()
-  		pan_tilt.pan = span
-  		pan_tilt.tilt = tilt
-  		return pan_tilt #[span, tilt] #span, tilt
-
-
-
-	def publishImage(self,img):
-		#img is a numpy image
-		msg = CompressedImage()
-		msg.header.stamp = rospy.Time.now()
-		msg.format = "jpeg"
-		msg.data = np.array(cv2.imencode('.jpg', img)[1]).tostring()
-		self.pub.publish(msg)
 
 	def scanMode(self):
-
 		if self.current_state==None:
 			return
 
@@ -125,171 +77,57 @@ class Tracker:
 			self.pub_cam.publish(next_state)
 
 
-
-	def computeImage(self, img):
-		#img is a numpy array
-		#get une image de la camera, retourne l'image avec les cercles autour des bots
-		#retourne aussi une liste de coordonées x,y
-
-
-		"""
-		0,0---------> x
-		 |
-		 |
-		 |
-		 |
-		 v
-
-		 y
-		"""
-
-		hsv = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
-
-		# get current positions of four trackbars
-		if slider:
-			h_low = cv2.getTrackbarPos('H_low','image')
-			s_low = cv2.getTrackbarPos('S_low','image')
-			v_low = cv2.getTrackbarPos('V_low','image')
-
-			h_h = cv2.getTrackbarPos('H_high','image')
-			s_h = cv2.getTrackbarPos('S_high','image')
-			v_h = cv2.getTrackbarPos('V_high','image')
-		else:
-			h_low = 153
-			s_low = 69
-			v_low = 164
-
-			h_h = 172
-			s_h = 200
-			v_h = 255
-
-
-		# define range of blue color in HSV
-		lower = np.array([h_low,s_low,v_low])
-		upper = np.array([h_h,s_h,v_h])
-
-		mask = cv2.inRange(hsv, lower, upper)
-		res = cv2.bitwise_and(img,img, mask= mask)
-
-		_, cnts, hierarchy = cv2.findContours(mask, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
-		#print(cnt[0])
-		cnts = self.get_biggest_contour(cnts)
-		centers = []
-		for cnt in cnts:
-			try:
-				M = cv2.moments(cnt)
-				cX = int(M["m10"] / M["m00"])
-				cY = int(M["m01"] / M["m00"])
-				cv2.circle(img, (cX, cY), 7, (255, 255, 255), -1)
-				centers.append([cX,cY])
-			except:
-				pass
-		#cv2.drawContours(img, cnt, -1, (255,255,0),2)
-
-		#print("contours",what)
-			if cnt != None:
-				if len(cnt)>=5:
-					ellipse = cv2.fitEllipse(cnt)
-					cv2.ellipse(img,ellipse,(0,255,0),2)
-		print(centers)
-		return img, centers
-
-	def get_biggest_contour(self, cnts):
-
-		#cnts is a list of contours
-		#returns a contour
-		#best_cnt = None
-		#max_area = -1
-		#for cnt in cnts:
-		#	area = cv2.contourArea(cnt)
-		#	if area > max_area:
-		#		best_cnt = cnt
-		#print(cv2.contourArea(best_cnt))
-
-		good_cnts = [cnt for cnt in cnts if cv2.contourArea(cnt)>160]
-		return good_cnts
-
-	def callback(self, data_img):
-		np_arr = np.fromstring(data_img.data, np.uint8)
-		frame = cv2.imdecode(np_arr, cv2.IMREAD_COLOR)
-		cv2.namedWindow('image')
-		if slider:
-			cv2.createTrackbar('H_low','image',153,179,self.nothing)
-			cv2.createTrackbar('S_low','image',69,255,self.nothing)
-			cv2.createTrackbar('V_low','image',164,255,self.nothing)
-			cv2.createTrackbar('H_high','image',172,179,self.nothing)
-			cv2.createTrackbar('S_high','image',200,255,self.nothing)
-			cv2.createTrackbar('V_high','image',255,255,self.nothing)
-
-
+	def callback(self, pan_tilts):
+		#Appelé constamment, pan_tilts non vide si il y a des turtle bots
 		if self.mode=='SCAN': #MODE SCAN
-			cv2.imshow('image',frame)
 			self.scanMode()
-		else:
-			#img, u, v = self.computeImage(frame) #u = x et v = y
-			img, centers = self.computeImage(frame) #centers = array de [x,y]
-			center_x = img.shape[1]/2
-			center_y = img.shape[0]/2
 
-			#Draw a crosshair in the center of the image
-			cv2.line(img, (center_x-20, center_y), (center_x+20, center_y), (0, 0, 255), 2)
-			cv2.line(img, (center_x, center_y-20), (center_x, center_y+20), (0, 0, 255), 2)
+		elif self.mode=='SEARCH':
+			pass
+		elif self.mode=='STOP':
+			if len(pan_tilts.array_pantilt)>0:
+				pan_tilt = pan_tilts.array_pantilt[0]
+				#print(pan_tilt)
+		elif self.mode=='TRACK' and len(pan_tilts.array_pantilt)>0 and time.time()-self.lastcall > 1.5:
+			print('track')
+			#Revoir, pour le moment on prend le premier ordre
+			pan_tilt = pan_tilts.array_pantilt[0]
+			#print(pan_tilt)
 
-			pan_tilts = PanTilts()
-			for center in centers:
-				pan_tilt = self.convertPanTilt(self.current_state.pan, self.current_state.tilt,self.current_state.zoom, center[0], center[1], center_x, center_y)
-				pan_tilts.array_pantilt.append(pan_tilt)
+			delta_pan = pan_tilt.pan - self.current_state.pan
+			delta_tilt = pan_tilt.tilt - self.current_state.tilt
 			
-			self.pub_pantilts.publish(pan_tilts)
+			next_state = copy.copy(self.current_state)
 			
-			"""
-			if u != -1 and v != -1 and time.time()-self.lastcall > 1.5:
-				u0 = img.shape[1]/2
-				v0 = img.shape[0]/2
-				cv2.circle(img, (u0, v0), 7, (255, 255, 255), -1)
-				# pan_tilt est un tableau [span, tilt]
+			seuil = 5
 
-				pan_tilt = self.convertPanTilt(self.current_state.pan, self.current_state.tilt,self.current_state.zoom, u, v , u0, v0)
+			if delta_pan > seuil:
+				next_state.pan = self.current_state.pan+seuil
+			elif delta_pan < -seuil:
+				next_state.pan = self.current_state.pan-seuil
+			else:
+				next_state.pan = pan_tilt.pan
 
-				delta_pan = pan_tilt[0] - self.current_state.pan
-				delta_tilt = pan_tilt[1] - self.current_state.tilt
+			if delta_tilt > seuil:
+				next_state.tilt = self.current_state.tilt+seuil
+			elif delta_tilt < -seuil:
+				next_state.tilt = self.current_state.tilt-seuil
+			else:
+				next_state.tilt = pan_tilt.tilt
+
+			delta_pan = pan_tilt.pan - self.current_state.pan
+			delta_tilt = pan_tilt.tilt - self.current_state.tilt
+
+			if abs(pan_tilt.pan) > 3 and abs(pan_tilt.tilt) >3:
+				print("ordre : \n span: "+str(delta_pan)+"\n Tilt: "+str(delta_tilt))
+				self.pub_cam.publish(next_state)
+				self.lastcall = time.time()
 			
-				next_state = copy.copy(self.current_state)
-				
-				seuil = 5
-
-				if delta_pan > seuil:
-					next_state.pan = self.current_state.pan+seuil
-				elif delta_pan < -seuil:
-					next_state.pan = self.current_state.pan-seuil
-				else:
-					next_state.pan = pan_tilt[0]
-
-				if delta_tilt > seuil:
-					next_state.tilt = self.current_state.tilt+seuil
-				elif delta_tilt < -seuil:
-					next_state.tilt = self.current_state.tilt-seuil
-				else:
-					next_state.tilt = pan_tilt[1]
-
-				delta_pan = pan_tilt[0] - self.current_state.pan
-				delta_tilt = pan_tilt[1] - self.current_state.tilt
-
-				if abs(pan_tilt[0]) > 3 and abs(pan_tilt[1]) >3:
-					#print("post it : \n X: "+str(u)+"\n Y: "+str(v))
-					#print("ordre : \n span: "+str(delta_pan)+"\n Tilt: "+str(delta_tilt))
-					if self.mode != 'STOP':
-						self.pub_cam.publish(next_state)
-					self.lastcall = time.time()
-			"""
 		
-			cv2.imshow('image',img)
-		cv2.waitKey(1) & 0xFF
-		
-		#self.publishImage(img)
+
 
 if __name__ == '__main__':
-	rospy.init_node('tracker_NODE', anonymous=True)
+	rospy.init_node('tracker', anonymous=True)
 
 	"""
 	
