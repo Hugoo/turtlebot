@@ -1,1 +1,1 @@
-/usr/users/promo2017/deferrieresd_hug/ros-ws/devel/.private/axis_camera/share/roseus/ros/axis_camera/msg/Axis.l
+/usr/users/promo2018/masclet_hug/turtlebot/devel/.private/axis_camera/share/roseus/ros/axis_camera/msg/Axis.l

@@ -1,3 +1,3 @@
-Symlinking /usr/users/promo2017/deferrieresd_hug/ros-ws/devel/lib/pkgconfig/turtleTrack.pc
-Symlinking /usr/users/promo2017/deferrieresd_hug/ros-ws/devel/share/turtleTrack/cmake/turtleTrackConfig.cmake
-Symlinking /usr/users/promo2017/deferrieresd_hug/ros-ws/devel/share/turtleTrack/cmake/turtleTrackConfig-version.cmake
+Symlinking /usr/users/promo2018/masclet_hug/turtlebot/devel/lib/pkgconfig/turtleTrack.pc
+Symlinking /usr/users/promo2018/masclet_hug/turtlebot/devel/share/turtleTrack/cmake/turtleTrackConfig.cmake
+Symlinking /usr/users/promo2018/masclet_hug/turtlebot/devel/share/turtleTrack/cmake/turtleTrackConfig-version.cmake

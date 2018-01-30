@@ -1,1 +1,1 @@
-/usr/users/promo2017/deferrieresd_hug/ros-ws/devel/.private/cam_tracker/share/cam_tracker/cmake/cam_trackerConfig-version.cmake
+/usr/users/promo2018/masclet_hug/turtlebot/devel/.private/cam_tracker/share/cam_tracker/cmake/cam_trackerConfig-version.cmake

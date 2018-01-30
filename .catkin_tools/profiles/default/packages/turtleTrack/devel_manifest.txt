@@ -1,0 +1,4 @@
+turtleTrack
+/usr/users/promo2018/masclet_hug/turtlebot/devel/.private/turtleTrack/lib/pkgconfig/turtleTrack.pc /usr/users/promo2018/masclet_hug/turtlebot/devel/lib/pkgconfig/turtleTrack.pc
+/usr/users/promo2018/masclet_hug/turtlebot/devel/.private/turtleTrack/share/turtleTrack/cmake/turtleTrackConfig.cmake /usr/users/promo2018/masclet_hug/turtlebot/devel/share/turtleTrack/cmake/turtleTrackConfig.cmake
+/usr/users/promo2018/masclet_hug/turtlebot/devel/.private/turtleTrack/share/turtleTrack/cmake/turtleTrackConfig-version.cmake /usr/users/promo2018/masclet_hug/turtlebot/devel/share/turtleTrack/cmake/turtleTrackConfig-version.cmake

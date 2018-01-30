@@ -10,7 +10,7 @@
 
 # since this file is sourced either use the provided _CATKIN_SETUP_DIR
 # or fall back to the destination set at configure time
-: ${_CATKIN_SETUP_DIR:=/usr/users/promo2017/deferrieresd_hug/ros-ws/devel/.private/demo_teleop}
+: ${_CATKIN_SETUP_DIR:=/usr/users/promo2018/masclet_hug/turtlebot/devel/.private/demo_teleop}
 _SETUP_UTIL="$_CATKIN_SETUP_DIR/_setup_util.py"
 unset _CATKIN_SETUP_DIR
 
