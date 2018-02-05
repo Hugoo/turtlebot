@@ -1,0 +1,7 @@
+<launch>
+	<arg name="positions_filename" default="/usr/users/promo2018/masclet_hug/turtlebot/positions.txt" />
+
+	<node pkg="cam_tracker" type="tracker.py" name="tracker"/>
+	<node pkg="cam_tracker" type="detect.py" name="detect"/>
+	<node pkg="cam_tracker" type="sampler.py" name="sampler" args="$(arg positions_filename)"/>
+</launch>

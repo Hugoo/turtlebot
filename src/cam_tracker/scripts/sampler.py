@@ -27,6 +27,9 @@ class Sampler:
 		self.ser = rospy.Service('/record', Empty, self.save_position)
 		self.positions = []
 
+		print('ICI')
+		print(os.getcwd())
+
 		with open(pos_filename, 'r') as f:
 			self.positions = [x.split(',') for x in f.read().split('\n')[1:-1]]
 			
