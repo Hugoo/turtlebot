@@ -118,7 +118,7 @@ class Tracker:
 			delta_pan = pan_tilt.pan - self.current_state.pan
 			delta_tilt = pan_tilt.tilt - self.current_state.tilt
 
-			if abs(pan_tilt.pan) > 3 and abs(pan_tilt.tilt) >3:
+			if abs(pan_tilt.pan) > 0.5 or abs(pan_tilt.tilt) >0.5:
 				print("ordre : \n span: "+str(delta_pan)+"\n Tilt: "+str(delta_tilt))
 				self.pub_cam.publish(next_state)
 				self.lastcall = time.time()

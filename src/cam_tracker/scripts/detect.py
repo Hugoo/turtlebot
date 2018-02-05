@@ -17,7 +17,7 @@ from cam_tracker.msg import *
 
 slider = False #Mettre à false pour désactiver les curseurs
 
-class Tracker:
+class Detect:
 	def __init__(self):
 		self.current_state = Axis()
 
@@ -188,7 +188,7 @@ if __name__ == '__main__':
 	rospy.init_node('detect', anonymous=True)
 
 	try:
-		Tracker()
+		Detect()
 		rospy.spin()
 	except KeyboardInterrupt:
 		print "Ok Bye Brow"
