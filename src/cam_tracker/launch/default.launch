@@ -1,0 +1,5 @@
+<launch>
+	<node pkg="cam_tracker" type="tracker.py" name="tracker"/>
+	<node pkg="cam_tracker" type="detect.py" name="detect"/>
+	<node pkg="cam_tracker" type="localize.py" name="localize"/>
+</launch>
