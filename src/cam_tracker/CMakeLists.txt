@@ -2,6 +2,7 @@ cmake_minimum_required(VERSION 2.8.3)
 project(cam_tracker)
 find_package(catkin REQUIRED COMPONENTS
   rospy
+  roscpp
   std_msgs
   sensor_msgs
   message_generation
@@ -11,6 +12,18 @@ find_package(catkin REQUIRED COMPONENTS
 #  cv2
 #  numpy
 )
+
+
+#include_directories(
+#  ${catkin_INCLUDE_DIRS}
+#)
+
+#add_executable(cam_tracker src/share.cpp)
+
+## Specify libraries to link a library or executable target against
+#target_link_libraries(cam_tracker
+#  ${catkin_LIBRARIES}
+#)
 
 add_service_files(
   FILES
